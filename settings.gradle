@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "NotesApp"
 include ':app'
+include ':lib'
+include ':tasks'
