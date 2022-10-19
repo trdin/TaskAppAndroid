@@ -30,6 +30,6 @@ fun generateTasks(size: Int): Tasks {
 
 fun main() {
     var tasks = generateTasks(10)
-
+    tasks.sortByPriority()
     println("$tasks")
 }

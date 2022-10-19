@@ -1,5 +1,7 @@
 package com.example.tasks
 
+import java.util.Collections.sort
+
 class Tasks {
     var taskList: List<Task> = listOf()
 
@@ -14,5 +16,9 @@ class Tasks {
             string += "$task"
         }
         return string
+    }
+
+    fun sortByPriority(){
+        sort(taskList)
     }
 }

@@ -7,7 +7,7 @@ open class Task (
     var title: String,
     var contents: String,
     var priority: Int
-        ) {
+        ): Comparable<Task>{
 
     var createdTime = SimpleDateFormat("yyyy-M-dd hh:mm:ss")
     var lastModified = SimpleDateFormat("yyyy-M-dd hh:mm:ss")
@@ -20,4 +20,7 @@ open class Task (
         string += "priority: $priority\n"
         return string
     }
+
+
+    override fun compareTo(other: Task): Int = compareValuesBy(this, other) { it.priority }
 }
