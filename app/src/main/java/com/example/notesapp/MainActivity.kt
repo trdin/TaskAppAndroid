@@ -1,73 +1,66 @@
 package com.example.notesapp
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.Switch
+import android.view.View
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import com.example.notesapp.databinding.ActivityMainBinding
 import com.example.tasks.Task
 import com.example.tasks.Tasks
 import kotlin.system.exitProcess
 
-
+// TODO onClick events
+// TODO change inputs
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    var tasks = Tasks()
+
+    private val getInputResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()) {
+            if(it.resultCode == Activity.RESULT_OK){
+                addTask(it)
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        var tasks = Tasks()
+    }
+    private fun addTask(it: ActivityResult){
+        val taskTitle = it.data?.getStringExtra("taskTitle").toString()
+        val doDate = it.data?.getStringExtra("doDate").toString()
+        val taskDone = it.data?.getStringExtra("taskDone").toBoolean()
+        val taskContent = it.data?.getStringExtra("taskContent").toString()
+        val taskPriority = it.data?.getStringExtra("taskPriority")?.toInt()
 
-        val addButton: Button = findViewById(R.id.addButton)
+        tasks.push(Task(taskDone, taskTitle, taskContent,taskPriority!!))
 
-        addButton.setOnClickListener { view ->
-            val inputTaskTitle: EditText = findViewById(R.id.taskTitle)
-            val taskTitle = inputTaskTitle.text.toString()
+        Log.d(null, "$taskTitle, $doDate, $taskContent, $taskDone, $taskPriority")
 
-            val inputDoDate: EditText = findViewById(R.id.editDate)
-            val doDate = inputDoDate.text.toString()
+        binding.taskDisplay.text = tasks.toString()
 
-
-            val inputTaskContent: EditText = findViewById(R.id.taskContent)
-            val taskContent = inputTaskContent.text.toString()
-            println(taskContent)
-
-            val inputTaskPriority: EditText = findViewById(R.id.taskPriority)
-            var taskPriority = 0;
-            if (inputTaskPriority.text.toString() != "") {
-                taskPriority = inputTaskPriority.text.toString().toInt()
-            }
-            val switchTaskDone: Switch = findViewById(R.id.doneSwitch)
-            val taskDone: Boolean = switchTaskDone.isChecked
-
-            tasks.push(Task(taskDone, taskTitle, taskContent,taskPriority ))
-
-            val inputs: MutableList<EditText> =
-                mutableListOf(inputTaskTitle, inputDoDate, inputTaskContent, inputTaskPriority)
-            for (input in inputs) {
-                input.text.clear()
-            }
-            switchTaskDone.isChecked = false
-
-            Log.d(null, "$taskTitle, $doDate, $taskContent, $taskDone, $taskPriority")
-
-        }
-
-        val infoButton: Button = findViewById(R.id.infoButton)
-        infoButton.setOnClickListener {
-            Log.d(null, "number of tasks: ${tasks.taskList.size}")
-            for (task in tasks.taskList) {
-                Log.d(null, task.toString())
-            }
-        }
-
-        val exitButton:ImageButton = findViewById(R.id.exitButton)
-        exitButton.setOnClickListener {
-            finish()
-            exitProcess(0)
-        }
     }
 
+    fun inputTask(view: View){
+        val intent = Intent(this, InputTaskActivity::class.java);
+        getInputResult.launch(intent)
+    }
+
+    fun aboutApp(view: View){
+        val intent = Intent(this, AboutActivity::class.java);
+        startActivity(intent)
+    }
+
+    fun exit(view: View){
+        finish()
+        exitProcess(0)
+    }
 
 }
