@@ -17,7 +17,6 @@ import com.google.gson.Gson
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlin.system.exitProcess
 
-//import com.google.zxing.integration.android.IntentIntegrator
 
 // TODO onClick events
 // TODO change inputs
@@ -25,13 +24,24 @@ open class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     var tasks = Tasks()
 
-    /* private val getInputResult =
-         registerForActivityResult(
-             ActivityResultContracts.StartActivityForResult()) {
-             if(it.resultCode == Activity.RESULT_OK){
-                 addTask(it)
-             }
-         }*/
+    private val getInputResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                addTaskActivity(it)
+            }
+        }
+
+    private val getQrCodeResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            val intentResult = IntentIntegrator.parseActivityResult(it.resultCode, it.data)
+
+            if (intentResult.contents != null) {
+                Toast.makeText(this, intentResult.contents, Toast.LENGTH_LONG).show()
+                addTaskJson(intentResult.contents.toString())
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +50,7 @@ open class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun addTask(it: ActivityResult) {
+    private fun addTaskActivity(it: ActivityResult) {
         val taskTitle = it.data?.getStringExtra("taskTitle").toString()
         val doDate = it.data?.getStringExtra("doDate").toString()
         val taskDone = it.data?.getStringExtra("taskDone").toBoolean()
@@ -55,9 +65,35 @@ open class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun addTaskJson(resJson: String) {
+        try {
+            val listOfStrings = Gson().fromJson(resJson, mutableMapOf<String, Any>().javaClass)
+            if (listOfStrings.containsKey("taskDone") &&
+                listOfStrings.containsKey("taskTitle") &&
+                listOfStrings.containsKey("taskContent") &&
+                listOfStrings.containsKey("taskPriority")
+            ) {
+                tasks.push(
+                    Task(
+                        listOfStrings["taskDone"].toString().toBoolean(),
+                        listOfStrings["taskTitle"].toString(),
+                        listOfStrings["taskContent"].toString(),
+                        listOfStrings["taskPriority"].toString().toDouble().toInt()
+                    )
+                )
+                binding.taskDisplay.text = tasks.toString()
+            } else {
+                Toast.makeText(this, "not correct contents", Toast.LENGTH_LONG).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "not JSON format", Toast.LENGTH_LONG).show()
+        }
+    }
+
+
     fun inputTask(view: View) {
         val intent = Intent(this, InputTaskActivity::class.java);
-        //getInputResult.launch(intent)
+        getInputResult.launch(intent)
     }
 
     fun aboutApp(view: View) {
@@ -71,44 +107,8 @@ open class MainActivity : AppCompatActivity() {
         scanner.setPrompt("Scan a barcode.")
         scanner.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
         scanner.setBarcodeImageEnabled(true)
-        scanner.initiateScan()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        var resultJSON = "";
-        if (resultCode == Activity.RESULT_OK) {
-            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-            if (result != null) {
-                if (result.contents == null) {
-                    Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
-                    resultJSON = result.contents.toString()
-                }
-            } else {
-                super.onActivityResult(requestCode, resultCode, data);
-            }
-        }
-        if (resultJSON != "") {
-            val listOfStrings = Gson().fromJson(resultJSON, mutableMapOf<String, Any>().javaClass)
-            Toast.makeText(this, "Scanned: " + listOfStrings.toString(), Toast.LENGTH_LONG).show()
-            println(listOfStrings.toString())
-
-            for (key in listOfStrings.keys) {
-                println("Key = ${key}, Value = ${listOfStrings[key]}")
-            }
-
-            tasks.push(
-                Task(
-                    listOfStrings["taskDone"].toString().toBoolean(),
-                    listOfStrings["taskTitle"].toString(),
-                    listOfStrings["taskContent"].toString(),
-                    listOfStrings["taskPriority"].toString().toDouble().toInt()
-                )
-            )
-            binding.taskDisplay.text = tasks.toString()
-        }
+        //scanner.initiateScan()
+        getQrCodeResult.launch(scanner.createScanIntent())
     }
 
     fun exit(view: View) {
