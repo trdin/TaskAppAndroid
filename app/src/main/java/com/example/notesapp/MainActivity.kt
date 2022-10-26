@@ -40,7 +40,6 @@ open class MainActivity : AppCompatActivity() {
             val intentResult = IntentIntegrator.parseActivityResult(it.resultCode, it.data)
 
             if (intentResult.contents != null) {
-                Toast.makeText(this, intentResult.contents, Toast.LENGTH_LONG).show()
                 addTaskJson(intentResult.contents.toString())
             }
         }
@@ -84,6 +83,7 @@ open class MainActivity : AppCompatActivity() {
                     )
                 )
                 binding.taskDisplay.text = tasks.toString()
+                Toast.makeText(this, "import successful", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "not correct contents", Toast.LENGTH_LONG).show()
             }

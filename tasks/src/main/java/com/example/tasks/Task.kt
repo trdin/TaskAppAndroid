@@ -13,11 +13,11 @@ open class Task (
     var lastModified = SimpleDateFormat("yyyy-M-dd hh:mm:ss")
 
     override fun toString(): String {
-        var string = "task: $title "
+        var string = "task: $title; "
         string += "done: " + if (done) "true" else "false"
-        string += " "
-        string += "content: $contents "
-        string += "priority: $priority\n"
+        string += "; "
+        string += "content: $contents; "
+        string += "priority: $priority\n;"
         return string
     }
 
