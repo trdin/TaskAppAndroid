@@ -40,4 +40,9 @@ class InputTaskActivity : AppCompatActivity() {
             binding.textError.text = "Error, all fields must be filled"
         }
     }
+
+    fun cancel(view: View){
+        setResult(Activity.RESULT_CANCELED);
+        finish();
+    }
 }

@@ -30,6 +30,8 @@ open class MainActivity : AppCompatActivity() {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 addTaskActivity(it)
+            }else if ( it.resultCode == Activity.RESULT_CANCELED){
+                Toast.makeText(this, "input canceled", Toast.LENGTH_LONG).show()
             }
         }
 
