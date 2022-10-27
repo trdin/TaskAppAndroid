@@ -17,7 +17,7 @@ open class Task (
         string += "done: " + if (done) "true" else "false"
         string += "; "
         string += "content: $contents; "
-        string += "priority: $priority\n;"
+        string += "priority: $priority;\n"
         return string
     }
 
