@@ -1,14 +1,19 @@
 package com.example.notesapp
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.notesapp.databinding.ActivityMainBinding
 import com.example.tasks.Task
@@ -35,6 +40,7 @@ open class MainActivity : AppCompatActivity() {
             }
         }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private val getQrCodeResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             val intentResult = IntentIntegrator.parseActivityResult(it.resultCode, it.data)
@@ -66,6 +72,7 @@ open class MainActivity : AppCompatActivity() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun addTaskJson(resJson: String) {
         try {
             val listOfStrings = Gson().fromJson(resJson, mutableMapOf<String, Any>().javaClass)
@@ -86,9 +93,11 @@ open class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "import successful", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "not correct contents", Toast.LENGTH_LONG).show()
+                vibrateQrCode(400)
             }
         } catch (e: Exception) {
             Toast.makeText(this, "not JSON format", Toast.LENGTH_LONG).show()
+            vibrateQrCode(400)
         }
     }
 
@@ -103,6 +112,7 @@ open class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun import(view: View) {
         val scanner = IntentIntegrator(this)
         scanner.setOrientationLocked(true)
@@ -111,6 +121,14 @@ open class MainActivity : AppCompatActivity() {
         scanner.setBarcodeImageEnabled(true)
         //scanner.initiateScan()
         getQrCodeResult.launch(scanner.createScanIntent())
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun vibrateQrCode(time: Long){
+        val vibrator : Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        val vibrationEffect1 : VibrationEffect = VibrationEffect.createOneShot(time, VibrationEffect.DEFAULT_AMPLITUDE)
+        vibrator.cancel()
+        vibrator.vibrate(vibrationEffect1)
     }
 
     fun exit(view: View) {
