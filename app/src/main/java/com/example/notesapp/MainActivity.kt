@@ -126,9 +126,9 @@ open class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun vibrateQrCode(time: Long){
         val vibrator : Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        val vibrationEffect1 : VibrationEffect = VibrationEffect.createOneShot(time, VibrationEffect.DEFAULT_AMPLITUDE)
+        val vibration : VibrationEffect = VibrationEffect.createOneShot(time, VibrationEffect.DEFAULT_AMPLITUDE)
         vibrator.cancel()
-        vibrator.vibrate(vibrationEffect1)
+        vibrator.vibrate(vibration)
     }
 
     fun exit(view: View) {
