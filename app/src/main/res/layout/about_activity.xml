@@ -19,6 +19,7 @@
         android:layout_marginStart="@dimen/small_margin"
         android:layout_marginTop="@dimen/small_margin"
         android:layout_marginEnd="@dimen/small_margin"
+        android:fontFamily="@font/roboto_slab"
         android:gravity="center_horizontal"
         android:text="@string/aboutText"
         android:textSize="@dimen/big_heading"
@@ -34,7 +35,8 @@
         android:textSize="@dimen/font"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/textView8" />
+        app:layout_constraintTop_toTopOf="@+id/textView8"
+        android:fontFamily="@font/roboto_slab"/>
 
     <TextView
         android:id="@+id/textView8"
@@ -55,7 +57,8 @@
         android:textSize="@dimen/font"
         app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
+        app:layout_constraintTop_toTopOf="@+id/textView10"
+        android:fontFamily="@font/roboto_slab"/>
 
     <TextView
         android:id="@+id/textView10"
@@ -77,7 +80,8 @@
         android:textSize="@dimen/font"
         app:layout_constraintBottom_toBottomOf="@+id/textView12"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/textView12" />
+        app:layout_constraintTop_toTopOf="@+id/textView12"
+        android:fontFamily="@font/roboto_slab"/>
 
     <TextView
         android:id="@+id/textView12"
@@ -98,7 +102,8 @@
         android:textSize="@dimen/font"
         app:layout_constraintBottom_toBottomOf="@+id/textView14"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toTopOf="@+id/textView14" />
+        app:layout_constraintTop_toTopOf="@+id/textView14"
+        android:fontFamily="@font/roboto_slab"/>
 
     <TextView
         android:id="@+id/textView14"

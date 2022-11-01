@@ -24,12 +24,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custombutton"
+        android:fontFamily="@font/roboto_black"
         android:onClick="inputTask"
         android:text="@string/add_task"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:backgroundTint="@null"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <Button
         android:id="@+id/infoButton"
@@ -37,12 +38,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/mid_margin"
         android:background="@drawable/custombutton"
+        android:fontFamily="@font/roboto_black"
         android:onClick="aboutApp"
         android:text="@string/aboutButton"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:backgroundTint="@null"/>
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
     <ImageButton
         android:id="@+id/exitButton"
@@ -94,11 +96,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/mid_margin"
         android:background="@drawable/custombutton"
+        android:fontFamily="@font/roboto_black"
         android:onClick="import"
         android:text="@string/importButton"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:backgroundTint="@null"/>
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
