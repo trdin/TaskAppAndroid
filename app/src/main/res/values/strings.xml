@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">Tasks</string>
+    <string name="notesapp">NotesApp</string>
+    <string name="appNameText">App name:</string>
+    <string name="aboutText">About</string>
+    <string name="descriptionLabel">Description:</string>
+    <string name="descrtiptionText">NotesApp is a app for keeping track of you tasks and make you more productive</string>
+    <string name="versionLabel">Version:</string>
+    <string name="versionText">V 1.2.1</string>
+    <string name="authorLabel">Author:</string>
+    <string name="AuthorText">Harden Systems</string>
+    <string name="buttonDescription">backButton</string>
+    <string name="add_task">Add Task</string>
+    <string name="aboutButton">About</string>
+    <string name="exitButton">Exit</string>
+    <string name="importButton">Import</string>
+    <string name="imagedescription">ImageTodo</string>
+    <string name="titleLabel">Title</string>
+    <string name="doneLabel">Done</string>
+    <string name="due_date_label">due Date</string>
+    <string name="contentLabel">Add what you task is about</string>
+    <string name="input_task_heading">Input task</string>
+    <string name="dateHint">Date</string>
+    <string name="priorityLabel">priority:</string>
+    <string name="priorityHint">1</string>
+    <string name="title_label">Title:</string>
+    <string name="backbutton">backButton</string>
+    <string name="task_content_hint">Task content</string>
 </resources>

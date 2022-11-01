@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="small_padding">8dp</dimen>
+    <dimen name="mid_margin">30dp</dimen>
+    <dimen name="large_margin">50dp</dimen>
+    <dimen name="font">16sp</dimen>
+    <dimen name="big_heading">30sp</dimen>
+    <dimen name="image_width">150sp</dimen>
+    <dimen name="image_height">70sp</dimen>
+    <dimen name="text_area_width">300sp</dimen>
+    <dimen name="text_area_height">150sp</dimen>
+    <dimen name="input_height">48sp</dimen>
+    <dimen name="error_width">200sp</dimen>
+    <dimen name="error_height">18sp</dimen>
+
+</resources>

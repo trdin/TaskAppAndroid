@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:minWidth="550dp"
     tools:context=".MainActivity">
 
 
@@ -11,14 +12,10 @@
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="914dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.50121653"
+        app:layout_constraintGuide_percent="0.50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,50 +23,53 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/custombutton"
         android:onClick="inputTask"
-        android:text="Add Task"
+        android:text="@string/add_task"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:backgroundTint="@null"/>
 
     <Button
         android:id="@+id/infoButton"
-        android:layout_width="90dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="@dimen/mid_margin"
+        android:background="@drawable/custombutton"
         android:onClick="aboutApp"
-        android:text="About"
+        android:text="@string/aboutButton"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:backgroundTint="@null"/>
 
     <ImageButton
         android:id="@+id/exitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:contentDescription="Exit"
-        android:minHeight="48dp"
+        android:layout_marginStart="@dimen/mid_margin"
+        android:layout_marginTop="@dimen/mid_margin"
+        android:background="@drawable/custombutton"
+        android:contentDescription="@string/exitButton"
         android:onClick="exit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_lock_power_off"
+        app:srcCompat="@drawable/off_button"
         tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="156dp"
-        android:layout_height="76dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="@dimen/image_width"
+        android:layout_height="@dimen/image_height"
+        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginBottom="@dimen/small_margin"
         app:layout_constraintBottom_toTopOf="@+id/infoButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tasks" />
+        app:srcCompat="@drawable/tasks"
+        android:contentDescription="@string/imagedescription" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -82,8 +82,8 @@
         android:id="@+id/taskDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="10dp"
+        android:layout_marginTop="@dimen/small_margin"
+        android:padding="@dimen/small_padding"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/addButton" />
@@ -92,11 +92,13 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="@dimen/mid_margin"
+        android:background="@drawable/custombutton"
         android:onClick="import"
-        android:text="Import"
+        android:text="@string/importButton"
         app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:backgroundTint="@null"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
