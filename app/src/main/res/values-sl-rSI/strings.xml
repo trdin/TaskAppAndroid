@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Opravila</string>
+    <string name="notesapp">NotesApp</string>
+    <string name="appNameText">Ime:</string>
+    <string name="aboutText">O aplikaciji</string>
+    <string name="descriptionLabel">Opis:</string>
+    <string name="descrtiptionText">NotesApp je aplikacija za sledenje vaših opravil in vas naredi bolj produktivne</string>
+    <string name="versionLabel">Verzija:</string>
+    <string name="versionText">V 1.2.1</string>
+    <string name="authorLabel">Avtor:</string>
+    <string name="AuthorText">Harden Systems</string>
+    <string name="buttonDescription">gumbNazaj</string>
+    <string name="add_task">Dodaj Opravilo</string>
+    <string name="aboutButton">Informacije</string>
+    <string name="exitButton">Izhod</string>
+    <string name="importButton">Uvozi</string>
+    <string name="imagedescription">slikaTodo</string>
+    <string name="titleLabel">Naslov</string>
+    <string name="doneLabel">Končano</string>
+    <string name="due_date_label">Rok</string>
+    <string name="contentLabel">Opiši svoje opravilo</string>
+    <string name="input_task_heading">Dodaj opravilo</string>
+    <string name="dateHint">Datum</string>
+    <string name="priorityLabel">prioriteta:</string>
+    <string name="priorityHint">1</string>
+    <string name="title_label">Naslov:</string>
+    <string name="backbutton">backButton</string>
+    <string name="task_content_hint">Vsebina</string>
+</resources>

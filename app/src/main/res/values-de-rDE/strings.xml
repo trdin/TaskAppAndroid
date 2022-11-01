@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aufgaben</string>
+    <string name="notesapp">NotesApp</string>
+    <string name="appNameText">App name:</string>
+    <string name="aboutText">Über App</string>
+    <string name="descriptionLabel">Beschreibung:</string>
+    <string name="descrtiptionText">NotesApp ist eine App, um Ihre Aufgaben im Auge zu behalten und Sie produktiver zu machen</string>
+    <string name="versionLabel">Ausführung:</string>
+    <string name="versionText">V 1.2.1</string>
+    <string name="authorLabel">Autor:</string>
+    <string name="AuthorText">Harden Systems</string>
+    <string name="buttonDescription">backButton</string>
+    <string name="add_task">Hinzufügen</string>
+    <string name="aboutButton">Über App</string>
+    <string name="exitButton">Exit</string>
+    <string name="importButton">Importieren</string>
+    <string name="imagedescription">ImageTodo</string>
+    <string name="titleLabel">Title</string>
+    <string name="doneLabel">Fertig</string>
+    <string name="due_date_label">Geburtstermin</string>
+    <string name="contentLabel">Fügen Sie hinzu, worum es in Ihrer Aufgabe geht</string>
+    <string name="input_task_heading">Aufgabe eingeben</string>
+    <string name="dateHint">Datum</string>
+    <string name="priorityLabel">Priorität:</string>
+    <string name="priorityHint">1</string>
+    <string name="title_label">Title:</string>
+    <string name="backbutton">backButton</string>
+    <string name="task_content_hint">Aufgabeninhalt</string>
+</resources>
