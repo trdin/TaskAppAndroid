@@ -15,7 +15,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.50"
+        app:layout_constraintGuide_percent="@dimen/guideline_center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,8 @@
         app:backgroundTint="@null"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        android:textSize="@dimen/font"/>
 
     <Button
         android:id="@+id/infoButton"
@@ -44,12 +45,14 @@
         app:backgroundTint="@null"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        android:textSize="@dimen/font"/>
 
     <ImageButton
         android:id="@+id/exitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="@dimen/button_size"
+        android:scaleType="fitXY"
         android:layout_marginStart="@dimen/mid_margin"
         android:layout_marginTop="@dimen/mid_margin"
         android:background="@drawable/custombutton"
@@ -78,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.50" />
+        app:layout_constraintGuide_percent="@dimen/guideline_center" />
 
     <TextView
         android:id="@+id/taskDisplay"
@@ -102,6 +105,7 @@
         app:backgroundTint="@null"
         app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        android:textSize="@dimen/font"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

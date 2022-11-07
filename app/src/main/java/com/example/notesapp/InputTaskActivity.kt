@@ -9,13 +9,16 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.notesapp.databinding.InputActivityBinding
+import com.example.tasks.Task
 
 
 class InputTaskActivity : AppCompatActivity() {
     private lateinit var binding: InputActivityBinding
+    lateinit var app: MyApplication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        app = application as MyApplication
         binding = InputActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
@@ -27,13 +30,14 @@ class InputTaskActivity : AppCompatActivity() {
             binding.taskContent.text.isNotEmpty() &&
             binding.taskPriority.text.isNotEmpty()
                 ){
-            val resultIntent = Intent();
+            /*val resultIntent = Intent();
             resultIntent.putExtra("taskTitle", binding.taskTitle.text.toString());
             resultIntent.putExtra("doDate", binding.editDate.text.toString());
             resultIntent.putExtra("taskContent", binding.taskContent.text.toString());
             resultIntent.putExtra("taskPriority", binding.taskPriority.text.toString());
             resultIntent.putExtra("taskDone", binding.doneSwitch.isChecked.toString());
-            setResult(Activity.RESULT_OK, resultIntent);
+            setResult(Activity.RESULT_OK, resultIntent);*/
+            app.data.push(Task(binding.doneSwitch.isChecked, binding.taskTitle.text.toString(), binding.taskContent.text.toString(),  binding.taskPriority.text.toString().toInt()))
             finish();
         }else{
             binding.textError.setTextColor(Color.rgb(200,0,0));

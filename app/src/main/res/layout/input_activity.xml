@@ -8,8 +8,9 @@
 
     <ImageButton
         android:id="@+id/backButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="@dimen/button_size"
+        android:scaleType="fitXY"
         android:layout_marginStart="@dimen/small_margin"
         android:layout_marginTop="@dimen/small_margin"
         android:layout_marginEnd="@dimen/small_margin"
@@ -33,7 +34,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/taskContent"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        tools:ignore="UseSwitchCompatOrMaterialXml"
+        android:textSize="@dimen/font"/>
 
     <EditText
         android:id="@+id/taskTitle"
@@ -55,6 +57,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         android:fontFamily="@font/roboto"
+        android:textSize="@dimen/font"
         />
 
     <EditText
@@ -72,7 +75,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        android:fontFamily="@font/roboto"/>
+        android:fontFamily="@font/roboto"
+        android:textSize="@dimen/font"/>
 
 
     <EditText
@@ -95,7 +99,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/taskTitle"
-        android:fontFamily="@font/roboto"/>
+        android:fontFamily="@font/roboto"
+        android:textSize="@dimen/font"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -107,7 +112,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.50"
+        app:layout_constraintGuide_percent="@dimen/guideline_center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -123,7 +128,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="@dimen/font"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -136,6 +142,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/editDate"
+        android:textSize="@dimen/font"
         android:fontFamily="@font/roboto"/>
 
     <TextView
@@ -147,12 +154,14 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/editDate"
         android:fontFamily="@font/roboto"
+        android:textSize="@dimen/font"
         />
 
     <ImageButton
         android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="@dimen/button_size"
+        android:scaleType="fitXY"
         android:layout_marginTop="@dimen/small_margin"
         android:onClick="addTask"
         android:background="@drawable/custombutton"
@@ -171,6 +180,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/taskPriority"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/taskPriority"
+        android:textSize="@dimen/font"
         android:fontFamily="@font/roboto"/>
 
     <EditText
@@ -191,7 +201,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/doneSwitch"
-        android:autofillHints="1" />
+        android:autofillHints="1"
+        android:textSize="@dimen/font"/>
 
     <TextView
         android:id="@+id/textView5"
@@ -201,14 +212,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/taskTitle"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/taskTitle"
-        android:fontFamily="@font/roboto"/>
+        android:fontFamily="@font/roboto"
+        android:textSize="@dimen/font"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.32603407" />
+        app:layout_constraintGuide_percent="@dimen/guideline_left" />
 
     <TextView
         android:id="@+id/textError"
@@ -219,6 +231,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/addButton"
-        android:fontFamily="@font/roboto"/>
+        android:fontFamily="@font/roboto"
+        android:textSize="@dimen/font"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

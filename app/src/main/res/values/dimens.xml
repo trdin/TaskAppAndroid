@@ -13,5 +13,8 @@
     <dimen name="input_height">48sp</dimen>
     <dimen name="error_width">200sp</dimen>
     <dimen name="error_height">18sp</dimen>
-
+    <dimen name="button_size">50dp</dimen>
+    <dimen name="guideline_center">0.5</dimen>
+    <dimen name="guideline_left">0.32</dimen>
+    <dimen name="desription_text">200dp</dimen>
 </resources>

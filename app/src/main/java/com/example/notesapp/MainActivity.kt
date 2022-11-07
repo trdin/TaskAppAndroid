@@ -27,9 +27,18 @@ import kotlin.system.exitProcess
 // TODO change inputs
 open class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    var tasks = Tasks()
+    lateinit var app: MyApplication
 
-    private val getInputResult =
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        app = application as MyApplication
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+    }
+
+
+    /*private val getInputResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
@@ -38,7 +47,7 @@ open class MainActivity : AppCompatActivity() {
             }else if ( it.resultCode == Activity.RESULT_CANCELED){
                 Toast.makeText(this, "input canceled", Toast.LENGTH_LONG).show()
             }
-        }
+        }*/
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val getQrCodeResult =
@@ -50,14 +59,9 @@ open class MainActivity : AppCompatActivity() {
             }
         }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-    }
 
-    private fun addTaskActivity(it: ActivityResult) {
+   /* private fun addTaskActivity(it: ActivityResult) {
         val taskTitle = it.data?.getStringExtra("taskTitle").toString()
         val doDate = it.data?.getStringExtra("doDate").toString()
         val taskDone = it.data?.getStringExtra("taskDone").toBoolean()
@@ -68,9 +72,9 @@ open class MainActivity : AppCompatActivity() {
 
         Log.d(null, "$taskTitle, $doDate, $taskContent, $taskDone, $taskPriority")
 
-        binding.taskDisplay.text = tasks.toString()
+        binding.taskDisplay.text = app.data.toString()
 
-    }
+    }*/
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun addTaskJson(resJson: String) {
@@ -81,7 +85,7 @@ open class MainActivity : AppCompatActivity() {
                 listOfStrings.containsKey("taskContent") &&
                 listOfStrings.containsKey("taskPriority")
             ) {
-                tasks.push(
+                app.data.push(
                     Task(
                         listOfStrings["taskDone"].toString().toBoolean(),
                         listOfStrings["taskTitle"].toString(),
@@ -89,7 +93,7 @@ open class MainActivity : AppCompatActivity() {
                         listOfStrings["taskPriority"].toString().toDouble().toInt()
                     )
                 )
-                binding.taskDisplay.text = tasks.toString()
+                binding.taskDisplay.text = app.data.toString()
                 Toast.makeText(this, "import successful", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "not correct contents", Toast.LENGTH_LONG).show()
@@ -104,7 +108,9 @@ open class MainActivity : AppCompatActivity() {
 
     fun inputTask(view: View) {
         val intent = Intent(this, InputTaskActivity::class.java);
-        getInputResult.launch(intent)
+        //getInputResult.launch(intent)
+        startActivity(intent)
+        binding.taskDisplay.text = app.data.toString()
     }
 
     fun aboutApp(view: View) {

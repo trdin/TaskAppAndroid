@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.33" />
+        app:layout_constraintGuide_percent="@dimen/guideline_left" />
 
     <TextView
         android:id="@+id/textView6"
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/mid_margin"
         android:layout_marginTop="@dimen/mid_margin"
-        android:width="200dp"
+        android:width="@dimen/desription_text"
         android:text="@string/descrtiptionText"
         android:textSize="@dimen/font"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -118,8 +118,9 @@
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="@dimen/button_size"
+        android:scaleType="fitXY"
         android:layout_marginBottom="@dimen/large_margin"
         android:background="@drawable/custombutton"
         android:contentDescription="@string/buttonDescription"
@@ -129,5 +130,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/back"
+
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
