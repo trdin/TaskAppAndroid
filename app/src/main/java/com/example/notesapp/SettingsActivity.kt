@@ -48,6 +48,10 @@ class SettingsActivity: AppCompatActivity() {
         app.settingsVisits++
         app.saveSettings()
 
+        //main activity is on pause
+        app.appBackground--
+        app.saveAppBackground()
+
         binding.appBackground.text = app.appBackground.toString()
         binding.appOpened.text = app.appOpened.toString()
 
@@ -57,5 +61,10 @@ class SettingsActivity: AppCompatActivity() {
         binding.settingsVisits.text = app.settingsVisits.toString()
     }
 
+    override fun onPause() {
+        super.onPause()
+        app.appBackground++
+        app.saveAppBackground()
+    }
 
 }

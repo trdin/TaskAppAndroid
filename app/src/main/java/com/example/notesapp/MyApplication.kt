@@ -5,6 +5,9 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.example.tasks.Task
 import com.example.tasks.Tasks
 import com.google.gson.Gson
@@ -18,7 +21,7 @@ import java.util.*
 const val MY_FILE_NAME = "mydata.json"
 const val MY_SP_FILE_NAME = "myshared.data"  //pred razredom
 
-class MyApplication : Application() {
+class MyApplication : Application(), LifecycleObserver {
     lateinit var data: Tasks
     lateinit var userUuid: String;
 
@@ -73,6 +76,12 @@ class MyApplication : Application() {
         appOpened++
         saveAppOpened()
     }
+
+    /*@OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    fun onAppBackgrounded() {
+        appBackground++
+        saveAppBackground()
+    }*/
 
     fun saveToFile() {
         try {
@@ -147,6 +156,7 @@ class MyApplication : Application() {
     }
 
     fun initAnalytics(){
+
         if(!sharedPref.contains("aboutVisits")){
             saveAbout()
         }
@@ -174,6 +184,7 @@ class MyApplication : Application() {
 
         appOpened = sharedPref.getString("appOpened", "DefaultNoData").toString().toInt()
         appBackground = sharedPref.getString("appBackground", "DefaultNoData").toString().toInt()
+        appBackground = 0;
     }
 
     fun saveAppBackground(){

@@ -24,8 +24,12 @@ class InputTaskActivity : AppCompatActivity() {
 
         app.inputVisits++
         app.saveInput()
+        //main activity is on pause
+        app.appBackground--
+        app.saveAppBackground()
 
     }
+
 
     fun addTask(view: View) {
 
@@ -53,5 +57,11 @@ class InputTaskActivity : AppCompatActivity() {
     fun cancel(view: View){
         setResult(Activity.RESULT_CANCELED);
         finish();
+    }
+
+    override fun onPause() {
+        super.onPause()
+        app.appBackground++
+        app.saveAppBackground()
     }
 }

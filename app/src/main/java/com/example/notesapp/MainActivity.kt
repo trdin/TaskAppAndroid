@@ -62,6 +62,10 @@ open class MainActivity : AppCompatActivity() {
             }
             app.mainVisits++
             app.saveMain()
+
+            //input activity is on pause
+            app.appBackground--
+            app.saveAppBackground()
         }
 
     private val getSettingsResult =
@@ -76,6 +80,10 @@ open class MainActivity : AppCompatActivity() {
             }
             app.mainVisits++
             app.saveMain()
+
+            //settingsActivity is on pause
+            app.appBackground--
+            app.saveAppBackground()
         }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -88,6 +96,10 @@ open class MainActivity : AppCompatActivity() {
             }
             app.mainVisits++
             app.saveMain()
+
+            //Main activity was on pause
+            app.appBackground--
+            app.saveAppBackground()
         }
 
 
@@ -149,6 +161,9 @@ open class MainActivity : AppCompatActivity() {
         startActivity(intent)
         app.mainVisits++
         app.saveMain()
+        //about activity is on pause
+        app.appBackground--
+        app.saveAppBackground()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -177,6 +192,11 @@ open class MainActivity : AppCompatActivity() {
         exitProcess(0)
     }
 
+    override fun onPause() {
+        super.onPause()
+        app.appBackground++
+        app.saveAppBackground()
+    }
 }
 
 
