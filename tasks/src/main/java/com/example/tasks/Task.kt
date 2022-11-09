@@ -12,6 +12,8 @@ open class Task (
     var createdTime = SimpleDateFormat("yyyy-M-dd hh:mm:ss")
     var lastModified = SimpleDateFormat("yyyy-M-dd hh:mm:ss")
 
+    var uuid = UUID.randomUUID().toString().replace("-", "");
+
     override fun toString(): String {
         var string = "task: $title; "
         string += "done: " + if (done) "true" else "false"

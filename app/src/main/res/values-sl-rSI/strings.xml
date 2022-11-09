@@ -27,4 +27,5 @@
     <string name="title_label">Naslov:</string>
     <string name="backbutton">backButton</string>
     <string name="task_content_hint">Vsebina</string>
+    <string name="user_id">Uporabnik:</string>
 </resources>

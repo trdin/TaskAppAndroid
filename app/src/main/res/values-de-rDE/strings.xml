@@ -27,4 +27,5 @@
     <string name="title_label">Title:</string>
     <string name="backbutton">backButton</string>
     <string name="task_content_hint">Aufgabeninhalt</string>
+    <string name="user_id">Ausweis:</string>
 </resources>
