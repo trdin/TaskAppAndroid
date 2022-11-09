@@ -15,6 +15,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.notesapp.databinding.ActivityMainBinding
 import com.example.tasks.Task
 import com.example.tasks.Tasks
@@ -35,19 +36,47 @@ open class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.settingsButton.setOnClickListener{
+            val intent = Intent(this, SettingsActivity::class.java);
+            //startActivity(intent)
+            getSettingsResult.launch(intent)
+        }
+        //app.sortData()
+        binding.taskDisplay.text = app.data.toString()
+
+        app.mainVisits++
+        app.saveMain()
+
     }
 
 
-    /*private val getInputResult =
+    private val getInputResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                addTaskActivity(it)
+                app.sortData()
+                binding.taskDisplay.text = app.data.toString()
             }else if ( it.resultCode == Activity.RESULT_CANCELED){
                 Toast.makeText(this, "input canceled", Toast.LENGTH_LONG).show()
             }
-        }*/
+            app.mainVisits++
+            app.saveMain()
+        }
+
+    private val getSettingsResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                app.sortData()
+                binding.taskDisplay.text = app.data.toString()
+            }else if ( it.resultCode == Activity.RESULT_CANCELED){
+                Toast.makeText(this, "input canceled", Toast.LENGTH_LONG).show()
+            }
+            app.mainVisits++
+            app.saveMain()
+        }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val getQrCodeResult =
@@ -57,6 +86,8 @@ open class MainActivity : AppCompatActivity() {
             if (intentResult.contents != null) {
                 addTaskJson(intentResult.contents.toString())
             }
+            app.mainVisits++
+            app.saveMain()
         }
 
 
@@ -93,6 +124,7 @@ open class MainActivity : AppCompatActivity() {
                         listOfStrings["taskPriority"].toString().toDouble().toInt()
                     )
                 )
+                app.sortData()
                 binding.taskDisplay.text = app.data.toString()
                 Toast.makeText(this, "import successful", Toast.LENGTH_LONG).show()
             } else {
@@ -105,17 +137,18 @@ open class MainActivity : AppCompatActivity() {
         }
     }
 
-
     fun inputTask(view: View) {
         val intent = Intent(this, InputTaskActivity::class.java);
-        //getInputResult.launch(intent)
-        startActivity(intent)
-        binding.taskDisplay.text = app.data.toString()
+        getInputResult.launch(intent)
+        //startActivity(intent)
+
     }
 
     fun aboutApp(view: View) {
         val intent = Intent(this, AboutActivity::class.java);
         startActivity(intent)
+        app.mainVisits++
+        app.saveMain()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -137,10 +170,13 @@ open class MainActivity : AppCompatActivity() {
         vibrator.vibrate(vibration)
     }
 
+
+
     fun exit(view: View) {
         finish()
         exitProcess(0)
     }
+
 }
 
 

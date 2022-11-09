@@ -21,6 +21,10 @@ class InputTaskActivity : AppCompatActivity() {
         app = application as MyApplication
         binding = InputActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        app.inputVisits++
+        app.saveInput()
+
     }
 
     fun addTask(view: View) {
@@ -36,8 +40,9 @@ class InputTaskActivity : AppCompatActivity() {
             resultIntent.putExtra("taskContent", binding.taskContent.text.toString());
             resultIntent.putExtra("taskPriority", binding.taskPriority.text.toString());
             resultIntent.putExtra("taskDone", binding.doneSwitch.isChecked.toString());
-            setResult(Activity.RESULT_OK, resultIntent);*/
+            */
             app.data.push(Task(binding.doneSwitch.isChecked, binding.taskTitle.text.toString(), binding.taskContent.text.toString(),  binding.taskPriority.text.toString().toInt()))
+            setResult(Activity.RESULT_OK);
             finish();
         }else{
             binding.textError.setTextColor(Color.rgb(200,0,0));

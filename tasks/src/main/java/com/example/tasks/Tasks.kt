@@ -19,8 +19,13 @@ class Tasks {
         return string
     }
 
+
     fun sortByPriority(){
         sort(taskList)
+    }
+
+    fun sortByPriorityDescendig(){
+        taskList.sortDescending()
     }
 
     fun deleteByID(id:String):Boolean{
@@ -40,7 +45,7 @@ class Tasks {
                 task.priority = taskNew.priority
                 task.contents = taskNew.contents
                 task.title = task.title
-                task.lastModified = SimpleDateFormat("yyyy-M-dd hh:mm:ss")
+                task.lastModified = SimpleDateFormat("yyyy-M-dd hh:mm:ss").toString()
                 sortByPriority()
                 return true;
             }

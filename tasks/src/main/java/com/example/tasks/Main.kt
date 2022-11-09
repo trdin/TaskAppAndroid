@@ -29,7 +29,10 @@ fun generateTasks(size: Int): Tasks {
 }
 
 fun main() {
-    var tasks = generateTasks(10)
+    var tasks = generateTasks(3)
     tasks.sortByPriority()
+    println("$tasks")
+    println("different order =========================================================================")
+    tasks.sortByPriorityDescendig()
     println("$tasks")
 }

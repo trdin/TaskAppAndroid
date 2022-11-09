@@ -15,12 +15,13 @@ class AboutActivity: AppCompatActivity() {
         binding = AboutActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.userId.text = app.userUuid.toString()
+
+        app.aboutVisits++
+        app.saveAbout()
     }
 
     fun goBack(view: View){
         finish();
     }
-
-
 
 }

@@ -9,10 +9,13 @@ open class Task (
     var priority: Int
         ): Comparable<Task>{
 
-    var createdTime = SimpleDateFormat("yyyy-M-dd hh:mm:ss")
-    var lastModified = SimpleDateFormat("yyyy-M-dd hh:mm:ss")
+    var createdTime = SimpleDateFormat("yyyy-M-dd hh:mm:ss").toString()
+    var lastModified = SimpleDateFormat("yyyy-M-dd hh:mm:ss").toString()
 
     var uuid = UUID.randomUUID().toString().replace("-", "");
+
+    constructor(done: String, title: String, contents: String, priority: String):
+            this(done.toBoolean(), title, contents, priority.toInt())
 
     override fun toString(): String {
         var string = "task: $title; "

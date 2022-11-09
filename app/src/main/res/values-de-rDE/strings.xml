@@ -28,4 +28,13 @@
     <string name="backbutton">backButton</string>
     <string name="task_content_hint">Aufgabeninhalt</string>
     <string name="user_id">Ausweis:</string>
+    <string name="ascending_by_priority">Ascending by priority</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="settings">Settings</string>
+    <string name="app_visits">App visits</string>
+    <string name="app_background">App background</string>
+    <string name="about_visits">About Visits</string>
+    <string name="input_visits">Input Visits</string>
+    <string name="settings_visits">Settings Visits</string>
+    <string name="main_visits">Main Visits</string>
 </resources>

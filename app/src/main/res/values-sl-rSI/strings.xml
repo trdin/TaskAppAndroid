@@ -28,4 +28,13 @@
     <string name="backbutton">backButton</string>
     <string name="task_content_hint">Vsebina</string>
     <string name="user_id">Uporabnik:</string>
+    <string name="ascending_by_priority">Ascending by priority</string>
+    <string name="dark_mode">Nočni način</string>
+    <string name="settings">Nastavitve</string>
+    <string name="app_visits">Obiski</string>
+    <string name="app_background">Delovanje v odzadju</string>
+    <string name="about_visits">About Visits</string>
+    <string name="input_visits">Input Visits</string>
+    <string name="settings_visits">Settings Visits</string>
+    <string name="main_visits">Main Visits</string>
 </resources>
