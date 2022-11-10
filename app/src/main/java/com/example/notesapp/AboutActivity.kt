@@ -19,18 +19,10 @@ class AboutActivity: AppCompatActivity() {
         app.aboutVisits++
         app.saveAbout()
 
-        //main activity is on pause
-        app.appBackground--
-        app.saveAppBackground()
     }
 
     fun goBack(view: View){
         finish();
     }
 
-    override fun onPause() {
-        super.onPause()
-        app.appBackground++
-        app.saveAppBackground()
-    }
 }

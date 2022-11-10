@@ -24,9 +24,7 @@ class InputTaskActivity : AppCompatActivity() {
 
         app.inputVisits++
         app.saveInput()
-        //main activity is on pause
-        app.appBackground--
-        app.saveAppBackground()
+
 
     }
 
@@ -59,9 +57,4 @@ class InputTaskActivity : AppCompatActivity() {
         finish();
     }
 
-    override fun onPause() {
-        super.onPause()
-        app.appBackground++
-        app.saveAppBackground()
-    }
 }
