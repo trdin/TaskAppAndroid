@@ -1,5 +1,6 @@
 package com.example.tasks
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 
 open class Task (
@@ -9,8 +10,9 @@ open class Task (
     var priority: Int
         ): Comparable<Task>{
 
-    var createdTime = SimpleDateFormat("yyyy-M-dd hh:mm:ss").toString()
-    var lastModified = SimpleDateFormat("yyyy-M-dd hh:mm:ss").toString()
+
+    var createdTime:Date  = Date()
+    var lastModified = Date()
 
     var uuid = UUID.randomUUID().toString().replace("-", "");
 

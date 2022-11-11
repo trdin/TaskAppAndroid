@@ -1,18 +1,19 @@
 package com.example.tasks
 
 import java.text.SimpleDateFormat
+import java.util.*
 import java.util.Collections.sort
 
 class Tasks {
     var taskList: MutableList<Task> = mutableListOf()
 
-    fun push(task: Task){
+    fun push(task: Task) {
         taskList.add(task)
     }
 
     override fun toString(): String {
         var string = ""
-        for (task in taskList){
+        for (task in taskList) {
             string += "============================================\n"
             string += "$task"
         }
@@ -20,17 +21,17 @@ class Tasks {
     }
 
 
-    fun sortByPriority(){
+    fun sortByPriority() {
         sort(taskList)
     }
 
-    fun sortByPriorityDescendig(){
+    fun sortByPriorityDescendig() {
         taskList.sortDescending()
     }
 
-    fun deleteByID(id:String):Boolean{
-        for(task in taskList){
-            if (task.uuid == id ){
+    fun deleteByID(id: String): Boolean {
+        for (task in taskList) {
+            if (task.uuid == id) {
                 taskList.remove(task)
                 return true;
             }
@@ -38,18 +39,26 @@ class Tasks {
         return false;
     }
 
-    fun modifyTask(taskNew: Task): Boolean{
-        for(task in taskList){
-            if (task.uuid == taskNew.uuid ){
+    fun modifyTask(id:String, taskNew: Task): Boolean {
+        for (task in taskList) {
+            if (task.uuid == id) {
                 task.done = taskNew.done
                 task.priority = taskNew.priority
                 task.contents = taskNew.contents
-                task.title = task.title
-                task.lastModified = SimpleDateFormat("yyyy-M-dd hh:mm:ss").toString()
-                sortByPriority()
+                task.title = taskNew.title
+                task.lastModified = Date()
                 return true;
             }
         }
         return false;
+    }
+
+    fun findByID(id: String): Task? {
+        for (task in taskList) {
+            if (task.uuid == id) {
+                return task;
+            }
+        }
+        return null;
     }
 }

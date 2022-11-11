@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name = ".MyApplication"
         android:allowBackup="true"
@@ -31,6 +32,7 @@
         <activity android:name=".InputTaskActivity" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".SettingsActivity" />
+        <activity android:name=".TasksListActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

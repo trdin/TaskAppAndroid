@@ -55,7 +55,6 @@ open class MainActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                app.sortData()
                 binding.taskDisplay.text = app.data.toString()
             }else if ( it.resultCode == Activity.RESULT_CANCELED){
                 Toast.makeText(this, "input canceled", Toast.LENGTH_LONG).show()
@@ -70,7 +69,7 @@ open class MainActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                app.sortData()
+                app.saveSortData()
                 binding.taskDisplay.text = app.data.toString()
             }else if ( it.resultCode == Activity.RESULT_CANCELED){
                 Toast.makeText(this, "input canceled", Toast.LENGTH_LONG).show()
@@ -127,7 +126,7 @@ open class MainActivity : AppCompatActivity() {
                         listOfStrings["taskPriority"].toString().toDouble().toInt()
                     )
                 )
-                app.sortData()
+                app.saveSortData()
                 binding.taskDisplay.text = app.data.toString()
                 Toast.makeText(this, "import successful", Toast.LENGTH_LONG).show()
             } else {
@@ -153,6 +152,11 @@ open class MainActivity : AppCompatActivity() {
         app.mainVisits++
         app.saveMain()
 
+    }
+
+    fun tasksApp(view: View){
+        val intent = Intent(this, TasksListActivity::class.java);
+        startActivity(intent)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

@@ -55,7 +55,7 @@
         android:layout_marginBottom="@dimen/mid_margin"
         android:background="@drawable/custombutton"
         android:fontFamily="@font/roboto_black"
-        android:onClick="aboutApp"
+        android:onClick="tasksApp"
         android:text="@string/aboutButton"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toTopOf="@+id/button"

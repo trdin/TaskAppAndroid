@@ -42,7 +42,7 @@ class SettingsActivity: AppCompatActivity() {
             }else{
                 app.saveOrder("DESC")
             }
-            app.sortData();
+            app.saveSortData();
         }
 
         app.settingsVisits++

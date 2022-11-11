@@ -11,10 +11,12 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.tasks.Task
 import com.example.tasks.Tasks
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import org.apache.commons.io.FileUtils
 import timber.log.Timber
 import java.io.File
 import java.io.IOException
+import java.text.DateFormat
 import java.util.*
 
 
@@ -44,7 +46,7 @@ class MyApplication : Application(), DefaultLifecycleObserver {
         super<Application>.onCreate()
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
-        gson = Gson()
+        gson = GsonBuilder().setDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz").create();
         file = File(filesDir, MY_FILE_NAME)
         sharedPref = getSharedPreferences(MY_SP_FILE_NAME, Context.MODE_PRIVATE);
 
@@ -137,7 +139,7 @@ class MyApplication : Application(), DefaultLifecycleObserver {
         return sharedPref.getString("PriorityOrder", "DefaultNoData")
     }
 
-    fun sortData(){
+    fun saveSortData(){
         if(getOrder() =="ASC"){
             data.sortByPriority()
         }else{
@@ -152,8 +154,12 @@ class MyApplication : Application(), DefaultLifecycleObserver {
         return data.deleteByID(id)
     }
 
-    fun modifyTask(taskNew: Task): Boolean {
-        return data.modifyTask(taskNew)
+    fun modifyTask(id: String, taskNew: Task): Boolean {
+        return data.modifyTask(id,taskNew)
+    }
+
+    fun findById(id: String): Task?{
+        return data.findByID(id)
     }
 
     fun initAnalytics(){
