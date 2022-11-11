@@ -2,6 +2,7 @@ package com.example.notesapp
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
@@ -117,8 +118,19 @@ class TasksListActivity : AppCompatActivity() {
         }*/
 
         binding.tasks100.setOnClickListener{
+            /*val builder =
+                AlertDialog.Builder(this@TasksListActivity) //access context from inner class
+            //set title for alert dialog
+            builder.setTitle("Loading")
+            builder.setMessage("Please wait, your tasks are being generated")
+            builder.setIcon(android.R.drawable.ic_dialog_alert)
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()*/
+
             app.generateTasks(100)
             adapter.notifyDataSetChanged()
+            //alertDialog.dismiss()
         }
 
 
