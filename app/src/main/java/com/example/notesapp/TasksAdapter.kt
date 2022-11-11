@@ -13,15 +13,14 @@ import com.squareup.picasso.Picasso
 import timber.log.Timber
 
 
-class TasksAdapter(private val data: Tasks, private val onClickObject:TasksAdapter.MyOnClick) :
+class TasksAdapter(private val data: Tasks, private val onClickObject: TasksAdapter.MyOnClick) :
     RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
 
     interface MyOnClick {
-        fun onClick(p0: View?, position:Int)
+        fun onClick(p0: View?, position: Int)
     }
 
     lateinit var onLongClickObject: TasksAdapter.MyOnClick
-
 
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
@@ -45,10 +44,12 @@ class TasksAdapter(private val data: Tasks, private val onClickObject:TasksAdapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ItemsViewModel = data.taskList[position]
-        if(ItemsViewModel.done){
-            Picasso.get().load("https://cdn-icons-png.flaticon.com/512/5610/5610944.png").placeholder(R.drawable.placeholder).error(R.drawable.error).into(holder.imageView);
-        }else{
-            Picasso.get().load("https://cdn-icons-png.flaticon.com/512/1810/1810745.png").placeholder(R.drawable.placeholder).error(R.drawable.error).into(holder.imageView);
+        if (ItemsViewModel.done) {
+            Picasso.get().load("https://cdn-icons-png.flaticon.com/512/5610/5610944.png")
+                .placeholder(R.drawable.placeholder).error(R.drawable.error).into(holder.imageView);
+        } else {
+            Picasso.get().load("https://cdn-icons-png.flaticon.com/512/1810/1810745.png")
+                .placeholder(R.drawable.placeholder).error(R.drawable.error).into(holder.imageView);
         }
 
         // sets the text to the textview from our itemHolder class
@@ -57,28 +58,23 @@ class TasksAdapter(private val data: Tasks, private val onClickObject:TasksAdapt
         holder.tvYear.text = ItemsViewModel.contents
         holder.priority.text = ItemsViewModel.priority.toString()
 
-        holder.line.setOnClickListener(object:View.OnClickListener{
+        holder.line.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 Timber.d("Here code comes Click on ${holder.adapterPosition}")
-                holder.line.setCardBackgroundColor( Color.RED) //LOCAL ACTION
-                onClickObject.onClick(p0,holder.adapterPosition) //Action from Activity
+                onClickObject.onClick(p0, holder.adapterPosition) //Action from Activity
             }
         })
 
-        holder.line.setOnLongClickListener(object:View.OnLongClickListener{
+        holder.line.setOnLongClickListener(object : View.OnLongClickListener {
             override fun onLongClick(p0: View?): Boolean {
                 /*Timber.d("Delete line ${pos}")
                 adapter.notifyDataSetChanged()
                 app.saveToFile()*/
                 Timber.d("Here code comes Click on ${holder.adapterPosition}")
-                holder.line.setCardBackgroundColor( Color.GREEN) //LOCAL ACTION
-                onLongClickObject.onClick(p0,holder.adapterPosition)
+                onLongClickObject.onClick(p0, holder.adapterPosition)
                 return true
             }
         })
-
-
-
 
 
     }

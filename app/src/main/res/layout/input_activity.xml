@@ -10,18 +10,16 @@
         android:id="@+id/backButton2"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
-        android:scaleType="fitXY"
         android:layout_marginStart="@dimen/small_margin"
         android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginEnd="@dimen/small_margin"
         android:background="@drawable/custombutton"
+        android:contentDescription="@string/backbutton"
         android:onClick="cancel"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        android:scaleType="fitXY"
+        app:backgroundTint="@null"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back"
-        app:backgroundTint="@null"
-        android:contentDescription="@string/backbutton" />
+        app:srcCompat="@drawable/back" />
 
     <Switch
         android:id="@+id/doneSwitch"

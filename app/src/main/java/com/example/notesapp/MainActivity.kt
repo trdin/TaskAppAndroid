@@ -4,21 +4,16 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import com.example.notesapp.databinding.ActivityMainBinding
 import com.example.tasks.Task
-import com.example.tasks.Tasks
 import com.google.gson.Gson
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlin.system.exitProcess
@@ -42,7 +37,6 @@ open class MainActivity : AppCompatActivity() {
             getSettingsResult.launch(intent)
         }
         //app.sortData()
-        binding.taskDisplay.text = app.data.toString()
 
         app.mainVisits++
         app.saveMain()
@@ -55,7 +49,7 @@ open class MainActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                binding.taskDisplay.text = app.data.toString()
+                Toast.makeText(this, "Task added", Toast.LENGTH_LONG).show()
             }else if ( it.resultCode == Activity.RESULT_CANCELED){
                 Toast.makeText(this, "input canceled", Toast.LENGTH_LONG).show()
             }
@@ -70,7 +64,6 @@ open class MainActivity : AppCompatActivity() {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 app.saveSortData()
-                binding.taskDisplay.text = app.data.toString()
             }else if ( it.resultCode == Activity.RESULT_CANCELED){
                 Toast.makeText(this, "input canceled", Toast.LENGTH_LONG).show()
             }
@@ -127,7 +120,6 @@ open class MainActivity : AppCompatActivity() {
                     )
                 )
                 app.saveSortData()
-                binding.taskDisplay.text = app.data.toString()
                 Toast.makeText(this, "import successful", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "not correct contents", Toast.LENGTH_LONG).show()
@@ -141,6 +133,7 @@ open class MainActivity : AppCompatActivity() {
 
     fun inputTask(view: View) {
         val intent = Intent(this, InputTaskActivity::class.java);
+        intent.putExtra("updateId", "")
         getInputResult.launch(intent)
         //startActivity(intent)
 

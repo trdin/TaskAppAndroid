@@ -60,7 +60,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common:2.5.1"
 
     implementation 'com.squareup.picasso:picasso:2.71828'
-
+    implementation 'io.github.serpro69:kotlin-faker:1.11.0'
     //noinspection GradleCompatible
    //implementation 'com.android.support:recyclerview-v7:28.0.0'
 

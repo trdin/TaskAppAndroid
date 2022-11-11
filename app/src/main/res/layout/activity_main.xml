@@ -38,30 +38,49 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/mid_margin"
         android:background="@drawable/custombutton"
         android:fontFamily="@font/roboto_black"
         android:onClick="inputTask"
         android:text="@string/add_task"
+        android:textSize="@dimen/font"
         app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/tasksButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        android:textSize="@dimen/font"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <Button
         android:id="@+id/infoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/mid_margin"
-        android:background="@drawable/custombutton"
+
         android:fontFamily="@font/roboto_black"
-        android:onClick="tasksApp"
+        android:onClick="aboutApp"
         android:text="@string/aboutButton"
+        android:textSize="@dimen/font"
+        android:background="@drawable/custombutton"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+    <Button
+        android:id="@+id/tasksButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mid_margin"
+        android:background="@drawable/custombutton"
+        android:fontFamily="@font/roboto_black"
+        android:onClick="tasksApp"
+        android:text="Tasks"
+        android:textSize="@dimen/font"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.184"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        android:textSize="@dimen/font"/>
+        app:layout_constraintTop_toBottomOf="@+id/addButton" />
 
     <ImageButton
         android:id="@+id/exitButton"
@@ -98,15 +117,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="@dimen/guideline_center" />
 
-    <TextView
-        android:id="@+id/taskDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
-        android:padding="@dimen/small_padding"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/addButton" />
+
 
     <Button
         android:id="@+id/button"

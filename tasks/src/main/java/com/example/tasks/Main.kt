@@ -10,8 +10,8 @@ fun generateTasks(size: Int): Tasks {
 
     for (i in 0..size) {
         var done: Boolean = faker.random.nextInt(0..1) == 1
-        var title: String = faker.friends.characters()
-        var contents: String = faker.internet.safeEmail()
+        var title: String = "send email to:" + faker.friends.characters()
+        var contents: String = "his email: " + faker.internet.safeEmail() + " "
         var priority: Int = faker.random.nextInt(0..10)
         if (i % 2 == 0) {
             tasks.push(Task(done, title, contents, priority))
@@ -29,7 +29,7 @@ fun generateTasks(size: Int): Tasks {
 }
 
 fun main() {
-    var tasks = generateTasks(3)
+    var tasks = generateTasks(100)
     tasks.sortByPriority()
     println("$tasks")
     println("different order =========================================================================")

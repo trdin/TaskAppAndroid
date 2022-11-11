@@ -5,11 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/deleteTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mid_margin"
+        android:background="@drawable/custombutton"
+        android:text="delete all tasks"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/prioritySwitch" />
+
     <Switch
         android:id="@+id/prioritySwitch"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/input_height"
-        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginTop="@dimen/mid_margin"
         android:text="@string/ascending_by_priority"
         android:textSize="@dimen/font"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
@@ -22,7 +34,7 @@
         android:id="@+id/darkModeSwitch"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/input_height"
-        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginTop="@dimen/mid_margin"
         android:text="@string/dark_mode"
         android:textSize="@dimen/font"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
@@ -75,13 +87,13 @@
         android:layout_marginEnd="@dimen/small_margin"
         android:text="@string/app_visits"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/prioritySwitch" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteTasks" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mid_margin"
+        android:layout_marginTop="@dimen/small_margin"
         android:layout_marginEnd="@dimen/small_margin"
         android:text="@string/app_background"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
@@ -91,7 +103,7 @@
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mid_margin"
+        android:layout_marginTop="@dimen/small_margin"
         android:layout_marginEnd="@dimen/small_margin"
         android:text="@string/about_visits"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
@@ -101,7 +113,7 @@
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mid_margin"
+        android:layout_marginTop="@dimen/small_margin"
         android:layout_marginEnd="@dimen/small_margin"
         android:text="@string/input_visits"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
@@ -111,7 +123,7 @@
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mid_margin"
+        android:layout_marginTop="@dimen/small_margin"
         android:layout_marginEnd="@dimen/small_margin"
         android:text="@string/settings_visits"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
@@ -121,7 +133,7 @@
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mid_margin"
+        android:layout_marginTop="@dimen/small_margin"
         android:layout_marginEnd="@dimen/small_margin"
         android:text="@string/main_visits"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"

@@ -10,13 +10,16 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.tasks.Task
 import com.example.tasks.Tasks
+import com.example.tasks.UrgentTask
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import io.github.serpro69.kfaker.Faker
 import org.apache.commons.io.FileUtils
 import timber.log.Timber
 import java.io.File
 import java.io.IOException
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -59,18 +62,18 @@ class MyApplication : Application(), DefaultLifecycleObserver {
 
         userUuid = getID()!!;
 
-        if(!sharedPref.contains("ThemeMode")){
+        if (!sharedPref.contains("ThemeMode")) {
             saveTheme("light")
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }else {
-            if(getThemeMode()=="light"){
+        } else {
+            if (getThemeMode() == "light") {
 
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }else{
+            } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
         }
-        if(!sharedPref.contains("PriorityOrder")){
+        if (!sharedPref.contains("PriorityOrder")) {
             saveOrder("ASC")
         }
 
@@ -97,6 +100,38 @@ class MyApplication : Application(), DefaultLifecycleObserver {
         }
     }
 
+    fun generateTasks(size: Int){
+        val faker = Faker()
+        for (i in 0..size) {
+            var priority: Int = faker.random.nextInt(1..10)
+            var done: Boolean = faker.random.nextInt(0..1) == 1
+            var title = ""
+            var contents = ""
+            if(faker.random.nextInt(0..1) == 1) {
+                title = "send email to:" + faker.friends.characters()
+                contents = "email: " + faker.internet.safeEmail() + "\n"
+
+                if (i % 2 == 0) {
+                    contents += "topic: going to " + faker.address.city()
+                } else {
+                    contents += "confirm that you are coming to his event"
+                }
+            }else{
+                title = "buy drone"
+                contents = "drone name: ${faker.drone.name()} \n"
+                contents += "price: "+ faker.random.nextInt(500..10000).toString() +"€"
+            }
+            /*var title = "buy drone"
+            var name =  faker.drone.name()
+            var contents = "drone name: $name" //+ " price " + faker.money.amount().toString()*/
+
+
+            data.push(Task(done, title, contents, priority))
+
+        }
+        saveSortData()
+    }
+
     fun initData() {
         data = try { //www
             //Timber.d("My file data:${FileUtils.readFileToString(file)}")
@@ -118,7 +153,7 @@ class MyApplication : Application(), DefaultLifecycleObserver {
         return sharedPref.getString("ID", "DefaultNoData")
     }
 
-    fun saveTheme(mode:String){
+    fun saveTheme(mode: String) {
         with(sharedPref.edit()) {
             putString("ThemeMode", mode)
             apply()
@@ -129,25 +164,25 @@ class MyApplication : Application(), DefaultLifecycleObserver {
         return sharedPref.getString("ThemeMode", "DefaultNoData")
     }
 
-    fun saveOrder(order:String){
+    fun saveOrder(order: String) {
         with(sharedPref.edit()) {
             putString("PriorityOrder", order)
             apply()
         }
     }
-    fun getOrder():String?{
+
+    fun getOrder(): String? {
         return sharedPref.getString("PriorityOrder", "DefaultNoData")
     }
 
-    fun saveSortData(){
-        if(getOrder() =="ASC"){
+    fun saveSortData() {
+        if (getOrder() == "ASC") {
             data.sortByPriority()
-        }else{
+        } else {
             data.sortByPriorityDescendig()
         }
         saveToFile();
     }
-
 
 
     fun deleteByID(id: String): Boolean {
@@ -155,32 +190,32 @@ class MyApplication : Application(), DefaultLifecycleObserver {
     }
 
     fun modifyTask(id: String, taskNew: Task): Boolean {
-        return data.modifyTask(id,taskNew)
+        return data.modifyTask(id, taskNew)
     }
 
-    fun findById(id: String): Task?{
+    fun findById(id: String): Task? {
         return data.findByID(id)
     }
 
-    fun initAnalytics(){
+    fun initAnalytics() {
 
-        if(!sharedPref.contains("aboutVisits")){
+        if (!sharedPref.contains("aboutVisits")) {
             saveAbout()
         }
-        if(!sharedPref.contains("inputVisits")){
+        if (!sharedPref.contains("inputVisits")) {
             saveInput()
         }
-        if(!sharedPref.contains("mainVisits")){
+        if (!sharedPref.contains("mainVisits")) {
             saveMain()
         }
-        if(!sharedPref.contains("settingsVisits")){
+        if (!sharedPref.contains("settingsVisits")) {
             saveSettings()
         }
 
-        if(!sharedPref.contains("appOpened")){
+        if (!sharedPref.contains("appOpened")) {
             saveAppOpened()
         }
-        if(!sharedPref.contains("appBackground")){
+        if (!sharedPref.contains("appBackground")) {
             saveAppBackground()
         }
 
@@ -193,40 +228,42 @@ class MyApplication : Application(), DefaultLifecycleObserver {
         appBackground = sharedPref.getString("appBackground", "DefaultNoData").toString().toInt()
     }
 
-    fun saveAppBackground(){
+    fun saveAppBackground() {
         with(sharedPref.edit()) {
             putString("appBackground", appBackground.toString())
             apply()
         }
     }
 
-    fun saveAppOpened(){
+    fun saveAppOpened() {
         with(sharedPref.edit()) {
             putString("appOpened", appOpened.toString())
             apply()
         }
     }
 
-    fun saveSettings(){
+    fun saveSettings() {
         with(sharedPref.edit()) {
             putString("settingsVisits", settingsVisits.toString())
             apply()
         }
     }
-    fun saveMain(){
+
+    fun saveMain() {
         with(sharedPref.edit()) {
             putString("mainVisits", mainVisits.toString())
             apply()
         }
     }
-    fun saveInput(){
+
+    fun saveInput() {
         with(sharedPref.edit()) {
             putString("inputVisits", inputVisits.toString())
             apply()
         }
     }
 
-    fun saveAbout(){
+    fun saveAbout() {
         with(sharedPref.edit()) {
             putString("aboutVisits", aboutVisits.toString())
             apply()
@@ -236,6 +273,11 @@ class MyApplication : Application(), DefaultLifecycleObserver {
     override fun onStop(owner: LifecycleOwner) { // app moved to background
         appBackground++
         saveAppBackground()
+    }
+
+    fun deleteAllTasks(){
+        data = Tasks()
+        saveToFile()
     }
 
 }

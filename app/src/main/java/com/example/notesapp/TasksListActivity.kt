@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -18,7 +19,7 @@ class TasksListActivity : AppCompatActivity() {
     private lateinit var binding: TasksListActivityBinding
 
     lateinit var adapter: TasksAdapter
-    private val getInputResult =
+    private val getUpdateResult =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
@@ -36,6 +37,18 @@ class TasksListActivity : AppCompatActivity() {
 
         }
 
+    private val getAddResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                adapter.notifyDataSetChanged()
+                Toast.makeText(this, "Task added", Toast.LENGTH_LONG).show()
+            }else if ( it.resultCode == Activity.RESULT_CANCELED){
+                Toast.makeText(this, "input canceled", Toast.LENGTH_LONG).show()
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = application as MyApplication
@@ -51,7 +64,7 @@ class TasksListActivity : AppCompatActivity() {
 
                 val intent = Intent(this@TasksListActivity, InputTaskActivity::class.java);
                 intent.putExtra("updateId", app.data.taskList[pos].uuid)
-                getInputResult.launch(intent)
+                getUpdateResult.launch(intent)
                 //finish()
             }
         })
@@ -68,20 +81,25 @@ class TasksListActivity : AppCompatActivity() {
                 builder.setTitle("Delete")
                 builder.setMessage(app.data.taskList[pos].toString())
                 builder.setIcon(android.R.drawable.ic_dialog_alert)
-                builder.setPositiveButton("Yes") { dialogInterface, which -> //performing positive action
+
+                var buttonFuntColor = "#FFFFFF"
+                if(app.getThemeMode()=="light"){
+                    buttonFuntColor = "#000000"
+                }
+                builder.setPositiveButton(Html.fromHtml("<font color='$buttonFuntColor'>Yes</font>")) { dialogInterface, which -> //performing positive action
                     Toast.makeText(applicationContext, "clicked yes", Toast.LENGTH_LONG).show()
                     app.data.taskList.removeAt(pos)
                     adapter.notifyDataSetChanged()
                     app.saveToFile()
                 }
-                builder.setNeutralButton("Cancel") { dialogInterface, which -> //performing cancel action
+                builder.setNeutralButton(Html.fromHtml("<font color='$buttonFuntColor'>Cancel</font>")) { dialogInterface, which -> //performing cancel action
                     Toast.makeText(
                         applicationContext,
                         "clicked cancel\n operation cancel",
                         Toast.LENGTH_LONG
                     ).show()
                 }
-                builder.setNegativeButton("No") { dialogInterface, which -> //performing negative action
+                builder.setNegativeButton(Html.fromHtml("<font color='$buttonFuntColor'>No</font>")) { dialogInterface, which -> //performing negative action
                     Toast.makeText(applicationContext, "clicked No", Toast.LENGTH_LONG).show()
                 }
                 // Create the AlertDialog
@@ -98,6 +116,24 @@ class TasksListActivity : AppCompatActivity() {
 
         }*/
 
+        binding.tasks100.setOnClickListener{
+            app.generateTasks(100)
+            adapter.notifyDataSetChanged()
+        }
+
 
     }
+
+    fun addTaskInput(view: View) {
+
+        val intent = Intent(this, InputTaskActivity::class.java);
+        intent.putExtra("updateId", "")
+        getAddResult.launch(intent)
+    }
+
+    fun cancel(view: View) {
+        finish();
+    }
+
+
 }
