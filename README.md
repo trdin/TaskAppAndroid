@@ -20,11 +20,11 @@ Main menu:
 
 <img width="200px" src="https://user-images.githubusercontent.com/89972475/202698955-25b4e2f6-41bb-447c-8942-4f8816147490.png">
 
-
+Task input:
 
 <img width="200px" src="https://user-images.githubusercontent.com/89972475/202698972-c4d506b9-a74d-4247-8c8b-ba4d5df30fb8.png">
 
-Task input:
+Task list:
 
 <img width="200px" src="https://user-images.githubusercontent.com/89972475/202698979-155768d7-ddca-413f-bb8c-95551b48fa4f.png">
 
@@ -35,3 +35,7 @@ Settings:
 Dark mode:
 
 <img width="200px" src="https://user-images.githubusercontent.com/89972475/202699005-553a7dd7-f059-43ca-8608-3955f3f2f6f6.png">
+
+## Author 
+
+[Peter Trdin](https://github.com/trdin)
